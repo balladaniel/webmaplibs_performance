@@ -38,11 +38,31 @@
 			var map = L.map('map', {layers: [OSM]}); 
 			map.attributionControl.setPrefix('<a href="https://leafletjs.com" title="A JavaScript library for interactive maps">Leaflet ' + L.version + '</a>');
 			
+			var geojsonMarkerOptions = {
+				radius: 8,
+				fillColor: "#ff7800",
+				color: "#000",
+				weight: 1,
+				opacity: 1,
+				fillOpacity: 0.8
+			};
+
 			fetch('../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).then(d => {
-				const t0 = performance.now();
-				testdata = L.geoJSON(d).addTo(map);
-				const t1 = performance.now();
-				console.log(`Adding to map took: ${t1-t0} ms.`)
+				let t0 = performance.now();
+				testdata = L.geoJSON(d/*, {
+					pointToLayer: function (feature, latlng) {
+						return L.circleMarker(latlng, geojsonMarkerOptions);
+					}}*/);
+				testdata.on('add', (e)=> {
+					let t1 = performance.now();
+					console.log(`Adding to map took: ${t1-t0} ms.`)
+					map.whenReady((e) => {
+						console.log('whenready')
+						let t2 = performance.now();
+						console.log(`Adding to map took: ${t2-t0} ms.`)
+					});
+				});
+				testdata.addTo(map);
 				map.fitBounds(testdata.getBounds())
 			});		
 

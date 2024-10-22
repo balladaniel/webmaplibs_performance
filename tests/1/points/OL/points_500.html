@@ -1,0 +1,85 @@
+<!doctype html>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Points 500</title>
+
+		<!-- OL -->
+        <link rel="stylesheet" href="../../../../libs/ol-10.2.1-dist/ol.css" type="text/css">
+		<script src="../../../../libs/ol-10.2.1-dist/ol.js" type="text/javascript"></script>
+		
+		<style>
+			html, body {
+				height: 100%;
+				margin: 0;
+				font-style: normal;				
+			}
+			
+			#map {
+				position: absolute;
+				margin:  auto;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+			}						
+		</style>
+	</head>
+	<body>		
+		<div id="map"></div>	
+		<script>
+
+			fileName = location.pathname.split("/").slice(-1)[0].slice(0,-5);
+
+			fetch('../../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).then(d => {
+
+				const map = new ol.Map({
+					target: 'map',
+					/*layers: [
+						new ol.layer.Tile({
+							source: new ol.source.OSM(),
+						}),
+					],*/
+					view: new ol.View({
+						center: [0, 0],
+						zoom: 2,
+					}),
+				});
+
+				var t0 = window.performance.now();
+
+				const vectorSource = new ol.source.Vector({
+					features: new ol.format.GeoJSON().readFeatures(d, {
+						dataProjection: 'EPSG:4326',
+						featureProjection: 'EPSG:3857'
+					}),
+				});
+
+				const vectorLayer = new ol.layer.Vector({
+					source: vectorSource
+				});
+
+				/*vectorLayer.once("render", function () {
+					var t1 = window.performance.now();
+					var elapsed = t1 - t0;
+					console.log("time to render: ", elapsed);
+				});
+
+				vectorLayer.getSource().on("featuresloadstart", function () {
+					console.log('start')
+				});
+
+				vectorLayer.getSource().on("featuresloadend", function () {
+					console.log('end')
+				});*/
+
+				map.addLayer(vectorLayer);
+				//map.renderSync();
+				var t1=performance.now();
+				console.log(`Adding to map took: ${t1-t0} ms.`)
+			});
+
+		</script>	
+	</body>
+</html>

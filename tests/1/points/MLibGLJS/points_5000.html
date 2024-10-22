@@ -1,0 +1,84 @@
+<!doctype html>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Points 500</title>
+
+		<!-- MapLibre GL JS -->
+        <link rel="stylesheet" href="../../../../libs/maplibregljs-4.7.1-dist/maplibre-gl.css" type="text/css">
+		<script src="../../../../libs/maplibregljs-4.7.1-dist/maplibre-gl.js" type="text/javascript"></script>
+		
+		<style>
+			html, body {
+				height: 100%;
+				margin: 0;
+				font-style: normal;				
+			}
+			
+			#map {
+				position: absolute;
+				margin:  auto;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+			}						
+		</style>
+	</head>
+	<body>		
+		<div id="map"></div>	
+		<script>
+
+			fileName = location.pathname.split("/").slice(-1)[0].slice(0,-5);
+
+			fetch('../../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).then(d => {
+
+				const map = new maplibregl.Map({
+					container: 'map', // container id
+					style: {
+						"name": "EmptyBackgroundMap",
+						"layers": [
+							{
+								"id": "background",
+								"type": "background",
+								"paint": {
+									"background-color": "#D8F2FF"
+								},
+								"layout": {
+									"visibility": "none"
+								},
+								"maxzoom": 24
+							}
+						],
+						"sources": {},
+						"version": 8,
+					}, // bkg map style
+					center: [0, 0], // starting position [lng, lat]
+					zoom: 1 // starting zoom
+				});
+
+				//var t0 = window.performance.now();
+
+				map.on('load', () => {
+					map.addSource('samplePoints', {
+						'type': 'geojson',
+						'data': d
+					});
+					
+					// METHOD: SVG MARKER FOR POINTS (THERE ARE DEFAULT MARKERS AS WELL! Unlike Leaflet, 
+					// might have to use geojson.forEach() to add a marker for each coord pair in geojson...)
+					map.addLayer({
+						'id': 'samplePoints',
+						'source': 'samplePoints',
+						'type': 'circle'
+					});
+				});
+
+				//var t1=performance.now();
+				//console.log(`Adding to map took: ${t1-t0} ms.`)
+			});
+
+		</script>	
+	</body>
+</html>

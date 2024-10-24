@@ -38,7 +38,7 @@
 			var map = L.map('map'/*, {layers: [OSM]}*/); 
 			map.attributionControl.setPrefix('<a href="https://leafletjs.com" title="A JavaScript library for interactive maps">Leaflet ' + L.version + '</a>');
 			
-			var geojsonMarkerOptions = {
+			var geojsonMarkerOptions_orange = {
 				radius: 8,
 				fillColor: "#ff7800",
 				color: "#000",
@@ -47,11 +47,18 @@
 				fillOpacity: 0.8
 			};
 
+			var geojsonMarkerOptions_black = {
+				radius: 4,
+				color: "#000",
+				stroke: false,
+				fillOpacity: 1
+			};
+
 			fetch('../../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).then(d => {
 				let t0 = performance.now();
 				testdata = L.geoJSON(d, {
 					pointToLayer: function (feature, latlng) {
-						return L.circleMarker(latlng, geojsonMarkerOptions);
+						return L.circleMarker(latlng, geojsonMarkerOptions_black);
 					}});
 				testdata.on('add', (e) => {
 					map.whenReady((e) => {

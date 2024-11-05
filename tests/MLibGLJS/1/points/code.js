@@ -9,7 +9,7 @@ fetch('../../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).th
         style: {
             "name": "EmptyBackgroundMap",
             "layers": [
-                {
+                /*{
                     "id": "background",
                     "type": "background",
                     "paint": {
@@ -19,7 +19,7 @@ fetch('../../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).th
                         "visibility": "none"
                     },
                     "maxzoom": 24
-                }
+                }*/
             ],
             "sources": {},
             "version": 8,

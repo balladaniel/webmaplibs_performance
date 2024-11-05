@@ -10,19 +10,7 @@ fetch('../../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).th
         projection: 'mercator',	// default was the `globe` 3D view, but lets keep projections consistent over all libraries (3857)
         style: {
             "name": "EmptyBackgroundMap",
-            "layers": [
-                {
-                    "id": "background",
-                    "type": "background",
-                    "paint": {
-                        "background-color": "#D8F2FF"
-                    },
-                    "layout": {
-                        "visibility": "none"
-                    },
-                    "maxzoom": 24
-                }
-            ],
+            "layers": [],
             "sources": {},
             "version": 8,
         }, // bkg map style, override with an empty one (so that it does not wait for retrieving styles/tiles from the web)

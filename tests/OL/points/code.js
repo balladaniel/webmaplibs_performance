@@ -2,7 +2,7 @@
 
 fileName = location.pathname.split("/").slice(-1)[0].slice(0,-5);
 
-fetch('../../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).then(d => {
+fetch('../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).then(d => {
 
     const map = new ol.Map({
         target: 'map',

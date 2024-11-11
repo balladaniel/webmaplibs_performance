@@ -1,26 +1,16 @@
-// MapLibre GL JS - Test 1 - Points
+// MapBox GL JS - Test 1 - Points
 
 fileName = location.pathname.split("/").slice(-1)[0].slice(0,-5);
 
-fetch('../../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).then(d => {
+fetch('../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).then(d => {
 
-    const map = new maplibregl.Map({
-        container: 'map', // container id
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYmFsbGFkYSIsImEiOiJjbTJuNWM3NnYwMmgyMmtzMjhqZncxMjBjIn0.zS7FxElADDrKQ_dC31DbJw';
+    const map = new mapboxgl.Map({
+        container: 'map', // container id,
+        projection: 'mercator',	// default was the `globe` 3D view, but lets keep projections consistent over all libraries (3857)
         style: {
             "name": "EmptyBackgroundMap",
-            "layers": [
-                /*{
-                    "id": "background",
-                    "type": "background",
-                    "paint": {
-                        "background-color": "#D8F2FF"
-                    },
-                    "layout": {
-                        "visibility": "none"
-                    },
-                    "maxzoom": 24
-                }*/
-            ],
+            "layers": [],
             "sources": {},
             "version": 8,
         }, // bkg map style, override with an empty one (so that it does not wait for retrieving styles/tiles from the web)

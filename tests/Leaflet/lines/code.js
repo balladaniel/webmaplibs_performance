@@ -2,7 +2,7 @@
 
 fileName = location.pathname.split("/").slice(-1)[0].slice(0,-5);
 
-fetch('../../../../datasets/lines/'+fileName+'.geojson').then(r => r.json()).then(d => {
+fetch('../../../datasets/lines/'+fileName+'.geojson').then(r => r.json()).then(d => {
     /*var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     });*/

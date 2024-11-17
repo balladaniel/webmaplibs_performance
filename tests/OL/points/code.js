@@ -17,8 +17,6 @@ fetch('../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).then(
         }),
     });
 
-    //var t0 = window.performance.now();
-
     const vectorSource = new ol.source.Vector({
         features: new ol.format.GeoJSON().readFeatures(d, {
             dataProjection: 'EPSG:4326',
@@ -26,6 +24,7 @@ fetch('../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).then(
         }),
     });
 
+    // normal Canvas 2D renderer: 
     const vectorLayer = new ol.layer.Vector({
         source: vectorSource,
         style: new ol.style.Style({
@@ -39,22 +38,18 @@ fetch('../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).then(
         })
     });
 
-    /*vectorLayer.once("render", function () {
-        var t1 = window.performance.now();
-        var elapsed = t1 - t0;
-        console.log("time to render: ", elapsed);
-    });
-
-    vectorLayer.getSource().on("featuresloadstart", function () {
-        console.log('start')
-    });
-
-    vectorLayer.getSource().on("featuresloadend", function () {
-        console.log('end')
+    // WebGL rendering
+    /*const vectorLayer = new ol.layer.WebGLPoints({
+        source: vectorSource,
+        style: {
+            symbol: {
+              symbolType: 'circle',
+              size: 10,
+              color: 'rgb(255, 0, 0)',
+              opacity: 0.5,
+            },
+          },
     });*/
 
     map.addLayer(vectorLayer);
-    //map.renderSync();
-    /*var t1=performance.now();
-    console.log(`Adding to map took: ${t1-t0} ms.`)*/
 });

@@ -16,8 +16,6 @@ fetch('../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).then(
         zoom: 2 // starting zoom
     });
 
-    //var t0 = window.performance.now();
-
     map.on('load', () => {
         map.addSource('samplePoints', {
             'type': 'geojson',
@@ -32,7 +30,4 @@ fetch('../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).then(
             'type': 'circle'
         });
     });
-
-    //var t1=performance.now();
-    //console.log(`Adding to map took: ${t1-t0} ms.`)
 });

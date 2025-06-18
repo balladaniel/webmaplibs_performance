@@ -9,14 +9,6 @@ fetch('../../../datasets/lines/'+fileName+'.geojson').then(r => r.json()).then(d
     var map = L.map('map'/*, {layers: [OSM]}*/).setView([49.82,6.1], 10); 
     map.attributionControl.setPrefix('<a href="https://leafletjs.com" title="A JavaScript library for interactive maps">Leaflet ' + L.version + '</a>');
 
-    //let t0 = performance.now();
     testdata = L.geoJSON(d);
-    /*testdata.on('add', (e) => {
-        map.whenReady((e) => {
-            console.log('whenready')
-            let t1 = performance.now();
-            console.log(`Adding to map took: ${t1-t0} ms.`)
-        });
-    });*/
     testdata.addTo(map);
 });		

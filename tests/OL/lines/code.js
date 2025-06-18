@@ -7,11 +7,11 @@ fetch('../../../datasets/lines/'+fileName+'.geojson').then(r => r.json()).then(d
     ol.proj.useGeographic();
     const map = new ol.Map({
         target: 'map',
-        layers: [
-            /*new ol.layer.Tile({
+        /*layers: [
+            new ol.layer.Tile({
                 source: new ol.source.OSM(),
-            }),*/
-        ],
+            }),
+        ],*/
         view: new ol.View({
             center: [6.1,49.82],
             zoom: 10,

@@ -18,23 +18,17 @@ fetch('../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).then(
         zoom: 2 // starting zoom
     });
 
-    //var t0 = window.performance.now();
-
     map.on('load', () => {
         map.addSource('samplePoints', {
             'type': 'geojson',
             'data': d
         });
         
-        // METHOD: SVG MARKER FOR POINTS (THERE ARE DEFAULT MARKERS AS WELL! Unlike Leaflet, 
-        // might have to use geojson.forEach() to add a marker for each coord pair in geojson...)
+        // METHOD: SVG MARKER FOR POINTS
         map.addLayer({
             'id': 'samplePoints',
             'source': 'samplePoints',
             'type': 'circle'
         });
     });
-
-    //var t1=performance.now();
-    //console.log(`Adding to map took: ${t1-t0} ms.`)
 });

@@ -25,17 +25,9 @@ fetch('../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).then(
     var map = L.map('map'/*, {layers: [OSM]}*/).setView([0,0], 3); 
     map.attributionControl.setPrefix('<a href="https://leafletjs.com" title="A JavaScript library for interactive maps">Leaflet ' + L.version + '</a>');
     
-    //let t0 = performance.now();
     testdata = L.geoJSON(d, {
         pointToLayer: function (feature, latlng) {
             return L.circleMarker(latlng, geojsonMarkerOptions_black);
         }});
-    /*testdata.on('add', (e) => {
-        map.whenReady((e) => {
-            console.log('whenready')
-            let t1 = performance.now();
-            console.log(`Adding to map took: ${t1-t0} ms.`)
-        });
-    });*/
     testdata.addTo(map);
 });		

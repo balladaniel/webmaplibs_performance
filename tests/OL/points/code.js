@@ -4,6 +4,7 @@ fileName = location.pathname.split("/").slice(-1)[0].slice(0,-5);
 
 fetch('../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).then(d => {
 
+    ol.proj.useGeographic();
     const map = new ol.Map({
         target: 'map',
         /*layers: [
@@ -19,8 +20,8 @@ fetch('../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).then(
 
     const vectorSource = new ol.source.Vector({
         features: new ol.format.GeoJSON().readFeatures(d, {
-            dataProjection: 'EPSG:4326',
-            featureProjection: 'EPSG:3857'
+            /*dataProjection: 'EPSG:4326',
+            featureProjection: 'EPSG:3857'*/
         }),
     });
 
@@ -37,19 +38,6 @@ fetch('../../../datasets/points/'+fileName+'.geojson').then(r => r.json()).then(
             })
         })
     });
-
-    // WebGL rendering
-    /*const vectorLayer = new ol.layer.WebGLPoints({
-        source: vectorSource,
-        style: {
-            symbol: {
-              symbolType: 'circle',
-              size: 10,
-              color: 'rgb(255, 0, 0)',
-              opacity: 0.5,
-            },
-          },
-    });*/
 
     map.addLayer(vectorLayer);
 });

@@ -1,0 +1,69 @@
+cff-version: 1.2.0
+message: If you use this software or dataset in connection with a work or scientific publication, please cite the article from preferred-citation.
+authors:
+  - given-names: Dániel
+    family-names: Balla
+    email: balla.daniel@inf.elte.hu
+    affiliation: >-
+      Institute of Cartography and Geoinformatics, ELTE
+      Eötvös Loránd University, 1117 Budapest, Hungary
+    orcid: 'https://orcid.org/0009-0003-4143-5836'
+  - given-names: Mátyás
+    family-names: Gede
+    email: saman@inf.elte.hu
+    affiliation: >-
+      Institute of Cartography and Geoinformatics, ELTE
+      Eötvös Loránd University, 1117 Budapest, Hungary
+    orcid: 'https://orcid.org/0000-0002-8639-2812'
+identifiers:
+  - type: doi
+    value: 10.3390/ijgi14090336
+  - type: url
+    value: >-
+      https://www.mdpi.com/2220-9964/14/9/336
+repository-code: 'https://github.com/balladaniel/webmaplibs_performance'
+title: Vector Data Rendering Performance Analysis of Open-Source Web Mapping Libraries
+version: 1.0.0
+url: https://www.mdpi.com/2220-9964/14/9/336
+doi: 10.3390/ijgi14090336
+date-released: '2025-08-30'
+preferred-citation:
+  authors:
+    - given-names: Dániel
+      family-names: Balla
+      email: balla.daniel@inf.elte.hu
+      affiliation: >-
+        Institute of Cartography and Geoinformatics, ELTE
+        Eötvös Loránd University, 1117 Budapest, Hungary
+      orcid: 'https://orcid.org/0009-0003-4143-5836'
+    - given-names: Mátyás
+      family-names: Gede
+      email: saman@inf.elte.hu
+      affiliation: >-
+        Institute of Cartography and Geoinformatics, ELTE
+        Eötvös Loránd University, 1117 Budapest, Hungary
+      orcid: 'https://orcid.org/0000-0002-8639-2812'
+  title: Vector Data Rendering Performance Analysis of Open-Source Web Mapping Libraries
+  doi: 10.3390/ijgi14090336
+  url: https://www.mdpi.com/2220-9964/14/9/336
+  type: article-journal
+  year: 2025
+  volume: 14
+  issue: 9
+  journal: "ISPRS International Journal of Geo-Information"
+  keywords: 
+  - performance analysis
+  - vector
+  - web maps
+  - rendering performance
+  - web GIS
+  - web cartography
+  - Leaflet
+  - OpenLayers
+  - Mapbox GL JS
+  - MapLibre GL JS
+  publisher: 
+    name: "Multidisciplinary Digital Publishing Institute (MDPI)"
+  license: CC-BY-4.0
+  abstract: >-
+    Nowadays, various technologies exist with differing rendering performance for interactive web maps. These maps are consumed on devices with varying capabilities; therefore, choosing the best-performing library for a dataset is emphasized. Unlike existing research, this study presents a comparative analysis on libraries’ native performance for rendering large amounts of GeoJSON vector data, partially extracted from OpenStreetMap (OSM). Four libraries were analyzed. Results showed that regardless of feature types, Leaflet and OpenLayers excelled for features up to 10,000. Up to 5000 points, these two were the fastest, above which the libraries’ performance converged. For 50,000 or more, Mapbox GL JS rendered them the quickest, followed by OpenLayers, MapLibre GL JS and Leaflet. For up to 50,000 lines and 10,000 polygons, Leaflet and OpenLayers were the fastest in all scenarios. For 100,000 lines, OpenLayers was almost twice as fast as the others, while Mapbox rendered 50,000 polygons the quickest. The performance of Leaflet and OpenLayers scales with the increasing feature quantities, yet for Mapbox and MapLibre, any performance impact is offset to 1000 features and beyond. Slow initalization of map elements makes Mapbox and MapLibre less suitable for rapid rendering of small feature quantities. Other behavioural differences affecting user experience are also explored.
